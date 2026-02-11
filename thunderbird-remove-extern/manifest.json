@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+  "name": "Remove [EXTERN] Prefix",
+  "description": "Entfernt automatisch das [EXTERN] Präfix aus E-Mail-Betreffs bei eingehenden Nachrichten.",
+  "version": "1.0.0",
+  "author": "Custom",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "remove-extern-prefix@thunderbird-addon",
+      "strict_min_version": "115.0"
+    }
+  },
+  "permissions": [
+    "messagesRead",
+    "messagesMove",
+    "messagesDelete",
+    "messagesImport",
+    "accountsRead",
+    "menus",
+    "messagesUpdate"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "icons": {
+    "48": "icon.svg",
+    "96": "icon.svg"
+  }
+}

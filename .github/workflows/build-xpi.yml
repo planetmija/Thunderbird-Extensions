@@ -1,0 +1,44 @@
+name: Build Thunderbird XPI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "thunderbird-remove-extern/**"
+      - ".github/workflows/build-xpi.yml"
+  workflow_dispatch:
+
+jobs:
+  build-xpi:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build XPI
+        id: build
+        run: |
+          set -euo pipefail
+          EXT_DIR="thunderbird-remove-extern"
+          VERSION=$(python - <<'PY'
+import json
+with open('thunderbird-remove-extern/manifest.json', 'r', encoding='utf-8') as f:
+    data = json.load(f)
+print(data['version'])
+PY
+          )
+          ARTIFACT_NAME="remove-extern-prefix-${VERSION}.xpi"
+          cd "$EXT_DIR"
+          zip -r "../$ARTIFACT_NAME" . -x "*.git*" -x "*node_modules*"
+          cd -
+          echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
+
+      - name: Upload XPI
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.build.outputs.artifact_name }}
+          path: ${{ steps.build.outputs.artifact_name }}
+          if-no-files-found: error

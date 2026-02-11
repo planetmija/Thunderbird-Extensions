@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90D9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C5F8A;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Hintergrund -->
+  <rect x="4" y="4" width="88" height="88" rx="16" ry="16" fill="url(#bg)" />
+  <!-- Brief-Symbol -->
+  <rect x="16" y="28" width="64" height="44" rx="4" ry="4" fill="white" opacity="0.95"/>
+  <polyline points="16,30 48,54 80,30" fill="none" stroke="#2C5F8A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Durchgestrichenes [E] -->
+  <circle cx="72" cy="24" r="16" fill="#E74C3C"/>
+  <text x="72" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="white">E</text>
+  <line x1="60" y1="32" x2="84" y2="16" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</svg>
