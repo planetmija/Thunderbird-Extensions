@@ -11,29 +11,25 @@ on:
 jobs:
   build-xpi:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
 
       - name: Build XPI
         id: build
         run: |
           set -euo pipefail
           EXT_DIR="thunderbird-remove-extern"
-          VERSION=$(python - <<'PY'
-import json
-with open('thunderbird-remove-extern/manifest.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
-print(data['version'])
-PY
-          )
+          VERSION=$(python3 -c "import json; print(json.load(open('thunderbird-remove-extern/manifest.json'))['version'])")
           ARTIFACT_NAME="remove-extern-prefix-${VERSION}.xpi"
           cd "$EXT_DIR"
           zip -r "../$ARTIFACT_NAME" . -x "*.git*" -x "*node_modules*"
-          cd -
+          cd ..
           echo "artifact_name=$ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Upload XPI
