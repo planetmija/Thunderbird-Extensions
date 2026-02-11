@@ -299,8 +299,10 @@ async function processMessage(message, folder) {
 
   // ── Schritt 1: Original in Papierkorb ──
   try {
+    // Markiere als gelesen vor dem Verschieben in den Papierkorb
+    await messenger.messages.update(message.id, { read: true });
     await messenger.messages.delete([message.id], false);
-    console.log(LOG, "Original in Papierkorb verschoben:", message.id);
+    console.log(LOG, "Original als gelesen markiert und in Papierkorb verschoben:", message.id);
   } catch (deleteErr) {
     console.error(LOG, "Original konnte nicht gelöscht werden:", deleteErr);
     return false;
