@@ -6,6 +6,8 @@ on:
     paths:
       - "thunderbird-remove-extern/**"
       - ".github/workflows/build-xpi.yml"
+    tags:
+      - "v*"
   workflow_dispatch:
 
 jobs:
@@ -38,3 +40,10 @@ jobs:
           name: ${{ steps.build.outputs.artifact_name }}
           path: ${{ steps.build.outputs.artifact_name }}
           if-no-files-found: error
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ steps.build.outputs.artifact_name }}
+          generate_release_notes: true
