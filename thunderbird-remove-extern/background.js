@@ -1,7 +1,7 @@
 // ============================================================
-// Remove [EXTERN] Prefix - Thunderbird MailExtension
+// Replace [EXTERN] with [TREX🦖] - Thunderbird MailExtension
 // ============================================================
-// Entfernt automatisch das "[EXTERN] " Präfix aus E-Mail-Betreffs.
+// Ersetzt automatisch das "[EXTERN] " Präfix durch "[TREX🦖] " in E-Mail-Betreffs.
 // Funktioniert bei eingehenden Nachrichten (automatisch) und
 // über das Rechtsklick-Kontextmenü (manuell).
 //
@@ -11,14 +11,14 @@
 // dekodiert oder re-kodiert, um Encoding-Probleme zu vermeiden.
 // ============================================================
 
-const LOG = "[Remove EXTERN]";
+const LOG = "[Replace EXTERN]";
 
 /**
- * Konfiguration: Muster die aus dem DEKODIERTEN Betreff entfernt werden.
+ * Konfiguration: Muster die im DEKODIERTEN Betreff ersetzt werden.
  * message.subject liefert den bereits dekodierten (Klartext-)Betreff.
  */
-const PATTERNS_TO_REMOVE = [
-  /\[EXTERN\][ \t]*/gi,
+const PATTERNS_TO_REPLACE = [
+  /\[EXTERN\]/gi,
   // Weitere Muster hier hinzufügen, z.B.:
   // /\[EXTERNAL\][ \t]*/gi,
   // /\[EXT\][ \t]*/gi,
@@ -29,24 +29,24 @@ const PATTERNS_TO_REMOVE = [
 // ============================================================
 
 /**
- * Prüft ob der (dekodierte) Betreff ein zu entfernendes Präfix enthält.
+ * Prüft ob der (dekodierte) Betreff ein zu ersetzendes Präfix enthält.
  */
 function subjectHasPrefix(subject) {
   if (!subject) return false;
-  return PATTERNS_TO_REMOVE.some((pattern) => {
+  return PATTERNS_TO_REPLACE.some((pattern) => {
     pattern.lastIndex = 0;
     return pattern.test(subject);
   });
 }
 
 /**
- * Entfernt das [EXTERN]-Muster aus einem dekodierten Betreff.
+ * Ersetzt das [EXTERN]-Muster durch [TREX🦖] in einem dekodierten Betreff.
  */
 function cleanSubject(subject) {
   let cleaned = subject;
-  for (const pattern of PATTERNS_TO_REMOVE) {
+  for (const pattern of PATTERNS_TO_REPLACE) {
     pattern.lastIndex = 0;
-    cleaned = cleaned.replace(pattern, "");
+    cleaned = cleaned.replace(pattern, "[TREX🦖]");
   }
   return cleaned.trim();
 }
@@ -382,7 +382,7 @@ messenger.messages.onNewMailReceived.addListener(async (folder, messageList) => 
 
 messenger.menus.create({
   id: "remove-extern-selected",
-  title: "[EXTERN] Präfix entfernen",
+  title: "[EXTERN] durch [TREX🦖] ersetzen",
   contexts: ["message_list"],
 });
 

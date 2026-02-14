@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
-  "name": "Remove [EXTERN] Prefix",
-  "description": "Entfernt automatisch das [EXTERN] Präfix aus E-Mail-Betreffs bei eingehenden Nachrichten.",
+  "name": "Replace EXTERN",
+  "description": "Ersetzt automatisch das [EXTERN] Präfix durch [TREX🦖] in E-Mail-Betreffs bei eingehenden Nachrichten.",
   "version": "1.1.0",
   "author": "Custom",
   "browser_specific_settings": {
     "gecko": {
-      "id": "remove-extern-prefix@thunderbird-addon",
+      "id": "replace-extern-trex@thunderbird-addon",
       "strict_min_version": "115.0"
     }
   },

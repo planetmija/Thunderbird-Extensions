@@ -1,19 +1,19 @@
-# Remove [EXTERN] Prefix – Thunderbird Add-on
+# Replace EXTERN – Thunderbird Add-on
 
-Entfernt automatisch das **[EXTERN]**-Präfix aus E-Mail-Betreffs.
+Ersetzt automatisch das **[EXTERN]**-Präfix durch **[TREX🦖]** in E-Mail-Betreffs.
 
 ## Beispiel
 
-| Vorher                          | Nachher                |
-| ------------------------------- | ---------------------- |
-| `[EXTERN] Re: Raumreservierung` | `Re: Raumreservierung` |
-| `[EXTERN] Neue Projektanfrage`  | `Neue Projektanfrage`  |
-| `[EXTERN] AW: [EXTERN] Termin`  | `AW: Termin`           |
+| Vorher                          | Nachher                         |
+| ------------------------------- | ------------------------------- |
+| `[EXTERN] Re: Raumreservierung` | `[TREX🦖] Re: Raumreservierung` |
+| `[EXTERN] Neue Projektanfrage`  | `[TREX🦖] Neue Projektanfrage`  |
+| `[EXTERN] AW: [EXTERN] Termin`  | `[TREX🦖] AW: [TREX🦖] Termin`  |
 
 ## Funktionsweise
 
-1. **Automatisch:** Bei jeder eingehenden E-Mail wird geprüft, ob der Betreff `[EXTERN]` enthält. Falls ja, wird der Betreff bereinigt.
-2. **Manuell:** Rechtsklick auf eine oder mehrere Nachrichten in der Nachrichtenliste → _„[EXTERN] Präfix entfernen"_.
+1. **Automatisch:** Bei jeder eingehenden E-Mail wird geprüft, ob der Betreff `[EXTERN]` enthält. Falls ja, wird es durch `[TREX🦖]` ersetzt.
+2. **Manuell:** Rechtsklick auf eine oder mehrere Nachrichten in der Nachrichtenliste → _„[EXTERN] durch [TREX🦖] ersetzen“_.
 
 ### Technisch
 

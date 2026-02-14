@@ -2,7 +2,7 @@ name: Build Thunderbird XPI
 
 on:
   push:
-    branches: [main]
+    branches: [main, trex]
     paths:
       - "thunderbird-remove-extern/**"
       - ".github/workflows/build-xpi.yml"
